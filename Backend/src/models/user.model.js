@@ -42,20 +42,22 @@ const userSchema = new Schema({
         enum: ['Active', 'Inactive', 'Suspended'],
         default: 'Active'
     },
-    address_detail: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Address'
-    },
+    address_detail: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Address'
+        }
+    ],
 
-    shopping_cart: {
+    shopping_cart: [{
         type: mongoose.Schema.ObjectId,
         ref: 'cartProduct'
-    },
+    }],
 
-    order_history: {
+    order_history: [{
         type: mongoose.Schema.ObjectId,
         ref: 'Order'
-    },
+    }],
     forgot_password_otp: {
         type: String,
         default: null
@@ -80,34 +82,14 @@ userSchema.pre("save", async function (next) {
     next();
 })
 
-userSchema.pre("update", async function (next) {
-    if (!this.isModified("password")) return next();
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-})
 
 userSchema.methods.isCorrectPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 
-userSchema.methods.generateRefreshToken = function () {
-    return jwt.sign({
-        id: this._id,
-        name: this.name,
-        email: this.email,
-    }, process.env.REFRESH_TOKEN, {
-        expiresIn: '7d'
-    })
-}
 
-userSchema.methods.generateAccessToken = function () {
-    return jwt.sign({
-        id: this._id,
-        name: this.name
-    }, process.env.ACCESS_TOKEN), {
-        expiresIn: '5h'
-    }
-}
+
+
 
 
 export const User = mongoose.model('User', userSchema);

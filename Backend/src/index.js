@@ -20,7 +20,8 @@ app.use(morgan())
 app.use(helmet({
     crossOriginResourcePolicy: false
 }))
-app.use(urlencoded({ extended: true }))
+
+
 
 
 app.get('/', (req, res) => {
