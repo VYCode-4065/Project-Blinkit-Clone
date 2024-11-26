@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Deviders from "./Deviders";
 import UserLogout from "../common/logout";
 import { resetUser } from "../store/userSlice";
 import { MdClose } from "react-icons/md";
+import { FiExternalLink } from "react-icons/fi";
 
 const UserProfileMobile = ({ setProfile }) => {
   const user = useSelector((state) => state.userDetails);
@@ -31,13 +32,16 @@ const UserProfileMobile = ({ setProfile }) => {
                 className="hover:bg-slate-400 rounded-full cursor-pointer hover:size-6"
               />
             </div>
-            <h6 className=" text-[.7rem] py-2">{user.name}</h6>
+            <Link to={"/dashboard/profile"} className="flex items-center gap-2">
+              <h6 className=" text-[.7rem] py-2">{user.name}</h6>
+              <FiExternalLink />
+            </Link>
             <Deviders />
             <div className="grid gap-2 text-[.7rem] pt-2">
-              <Link to={""} className=" hover:text-black">
+              <Link to={"/dashboard/orders"} className=" hover:text-black">
                 My Orders
               </Link>
-              <Link to={""} className=" hover:text-black">
+              <Link to={"/dashboard/address"} className=" hover:text-black">
                 Saved Address
               </Link>
               <button

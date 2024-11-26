@@ -1,21 +1,29 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 
 import { FiExternalLink } from "react-icons/fi";
 import UserLogout from "../common/logout";
 import fetchUserDetails from "../common/fetchUserDetails";
+import { resetUser } from "../store/userSlice";
 
 const Dashboard = () => {
+  const user = useSelector((state) => state.userDetails);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const userLoggingOut = async () => {
     const response = await UserLogout();
 
     dispatch(resetUser());
     localStorage.clear();
+    navigate("/");
+    fetchUserDetails();
   };
 
-  const user = useSelector((state) => state.userDetails);
   return (
     <div className="container   lg:px-[15rem] lg:py-5 ">
       <div className="border-2  lg:border-slate-300 grid lg:grid-cols-[270px,1fr] gap-2 rounded-md">
