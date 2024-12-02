@@ -12,6 +12,11 @@ import Profile from "../pages/Profile";
 import MyOrders from "../pages/MyOrders";
 import SavedAddress from "../pages/SavedAddress";
 import UpdateAvatar from "../pages/UpdateAvatar";
+import Category from "../pages/category";
+import SubCategory from "../pages/SubCategory";
+import UploadProduct from "../pages/UploadProduct";
+import Product from "../pages/Product";
+import AdminControl from "../components/AdminControl";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +70,38 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/update-avatar",
             element: <UpdateAvatar />,
+          },
+          {
+            path: "/dashboard/category",
+            element: (
+              <AdminControl>
+                <Category />
+              </AdminControl>
+            ),
+          },
+          {
+            path: "/dashboard/sub-category",
+            element: (
+              <AdminControl>
+                <SubCategory />
+              </AdminControl>
+            ),
+          },
+          {
+            path: "/dashboard/upload-product",
+            element: (
+              <AdminControl>
+                <UploadProduct />
+              </AdminControl>
+            ),
+          },
+          {
+            path: "/dashboard/product",
+            element: (
+              <AdminControl>
+                <Product />
+              </AdminControl>
+            ),
           },
         ],
       },

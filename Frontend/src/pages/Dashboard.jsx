@@ -7,6 +7,7 @@ import { FiExternalLink } from "react-icons/fi";
 import UserLogout from "../common/logout";
 import fetchUserDetails from "../common/fetchUserDetails";
 import { resetUser } from "../store/userSlice";
+import UserMenu from "../components/UserMenu";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.userDetails);
@@ -25,31 +26,16 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container   lg:px-[15rem] lg:py-5 ">
-      <div className="border-2  lg:border-slate-300 grid lg:grid-cols-[270px,1fr] gap-2 rounded-md">
-        <div className="hidden lg:block  pb-4 w-full border-2  border-r-slate-300 ">
+    <div className="container px-5 min-h-[calc(100vh-140px)]">
+      <div className=" mb-14 lg:mb-0  grid lg:grid-cols-[220px,1fr] gap-2 rounded-sm ">
+        <div className="hidden lg:block  pb-4 w-full sticky top-28 max-h-[calc(100vh-200px)] ">
           <div className="flex items-start pl-4 pt-5 justify-center gap-2 flex-col  ">
             <h3 className="font-bold">My Account </h3>
-            <div className="flex items-center gap-2 ">
-              <span className="pt-2">{user?.name}</span>
-              <Link to={"/dashboard/profile"}>
-                <FiExternalLink className="cursor-pointer hover:font-bold" />
-              </Link>
-            </div>
-          </div>
-          <div className="flex items-start pl-4 pt-5 justify-center gap-2 flex-col text-slate-600 ">
-            <Link to={"/dashboard/orders"} className="hover:text-black">
-              My Orders
-            </Link>
-            <Link to={"/dashboard/address"} className="hover:text-black">
-              Saved Address
-            </Link>
-            <Link onClick={userLoggingOut} className="hover:text-black">
-              Logout
-            </Link>
+
+            {<UserMenu />}
           </div>
         </div>
-        <div className="p-5 border-2 border-l-slate-300 ">
+        <div className=" ">
           <Outlet />
         </div>
       </div>

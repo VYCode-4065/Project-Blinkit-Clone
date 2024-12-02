@@ -17,7 +17,7 @@ const uploadOnCloudinary = async (localFilePath) => {
 
         //Upload the file on cloudinary
         const response = await cloudinary.uploader.upload(localFilePath, {
-            folder: '/Blinkit/avatar',
+            folder: '/Blinkit/',
             resource_type: "auto"
         });
 

@@ -50,15 +50,15 @@ const SummaryApi = {
         method: 'post'
     },
     getCategory: {
-        url: '/api/category/get',
+        url: '/api/category/get-category',
         method: 'get'
     },
     updateCategory: {
-        url: '/api/category/update',
+        url: '/api/category/update-category',
         method: 'put'
     },
     deleteCategory: {
-        url: '/api/category/delete',
+        url: '/api/category/delete-category',
         method: 'delete'
     },
     createSubCategory: {
@@ -67,7 +67,7 @@ const SummaryApi = {
     },
     getSubCategory: {
         url: '/api/subcategory/get',
-        method: 'post'
+        method: 'get'
     },
     updateSubCategory: {
         url: '/api/subcategory/update',

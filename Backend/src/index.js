@@ -6,6 +6,9 @@ import morgan from "morgan";
 import helmet from 'helmet';
 import connectDB from "./DB/connectDB.js";
 import userRouter from "./routes/user.route.js";
+import categoryRouter from "./routes/category.route.js";
+import imageRouter from "./routes/image.route.js";
+import subCategoryRouter from "./routes/subCategory.route.js";
 dotenv.config();
 
 const app = express();
@@ -31,7 +34,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/user', userRouter);
 
-
+app.use('/api/category', categoryRouter);
+app.use('/api/file', imageRouter)
+app.use('/api/subcategory', subCategoryRouter)
 app.use((req, res) => {
     res.send('Something went wrong');
 })
