@@ -5,7 +5,7 @@ const genereateAccessToken = (_id, email) => {
         _id: _id,
         email: email
     }, process.env.ACCESS_TOKEN, {
-        expiresIn: '2h'
+        expiresIn: '5h'
     })
 }
 

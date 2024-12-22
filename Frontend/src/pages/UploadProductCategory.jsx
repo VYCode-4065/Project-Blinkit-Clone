@@ -54,7 +54,7 @@ const UploadProductCategory = ({ close }) => {
     }
   };
 
-  const valideValue = Object.values(data).every((el) => el);
+  const validValue = Object.values(data).every((el) => el);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,7 +133,11 @@ const UploadProductCategory = ({ close }) => {
                   </label>
                 </div>
               </div>
-              <button className="p-2 my-4  border-2 border-blue-500 rounded-md hover:bg-red-800 text-md">
+              <button
+                className={`p-2 my-4  border-2 border-blue-500 rounded-md ${
+                  validValue && "bg-red-800"
+                } text-md`}
+              >
                 Add Category
               </button>
             </div>

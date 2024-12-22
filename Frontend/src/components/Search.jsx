@@ -7,10 +7,11 @@ import userMobile from "../hooks/useMobile";
 
 const Search = () => {
   const [isSearchPage, setIsSearchPage] = useState(false);
+  const [search, setSearch] = useState("");
 
   const location = useLocation();
 
-  const [isMobile] = userMobile();
+  const [isMobile] = userMobile(770);
 
   useEffect(() => {
     setIsSearchPage(location.pathname === "/search");
@@ -21,10 +22,34 @@ const Search = () => {
     navigation("/search");
   };
 
+  const fetchProduct = async () => {
+    try {
+      const response = await Axios({
+        ...SummaryApi.getProduct,
+        data: { limit: 14, page: currentPage, search: search },
+      });
+
+      const { data: responseData } = response.data;
+
+      dispatch(setProduct(responseData.data));
+      setTotalPage(responseData.totalPage);
+      setProductData(responseData.data);
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
+
+  const handleOnSearch = (e) => {
+    const { value } = e.target;
+
+    const timeoutval = setTimeout(() => {
+      setSearch(value);
+    }, 500);
+  };
   return (
     <>
-      <div className="w-full   min-w-[300px]  rounded-xl lg:min-w-[420px] flex justify-start  p-2 gap-2 border-2 group focus-within:border-primary-100">
-        <div className=" h-full pt-1  flex items-center justify-center">
+      <div className="w-full   md:min-w-[300px]  rounded-xl lg:min-w-[650px] flex justify-start  p-2 gap-2 border-2 group focus-within:border-primary-100">
+        <div className=" h-full   flex items-center justify-center">
           {isSearchPage && isMobile ? (
             <Link
               to={"/"}
@@ -64,6 +89,7 @@ const Search = () => {
             <input
               type="text"
               placeholder="Search for atta dal and more "
+              onChange={handleOnSearch}
               className="bg-transparent h-full outline-none w-full text-slate-600 pt-1"
             />
           )}

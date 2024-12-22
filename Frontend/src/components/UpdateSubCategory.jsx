@@ -100,7 +100,7 @@ const UpdateSubCategory = ({ data, close }) => {
 
   return (
     <section className="fixed top-0 right-0 bottom-0 left-0 bg-neutral-800 bg-opacity-70 flex items-center justify-center">
-      <div className="bg-white max-w-[71rem] w-full rounded">
+      <div className="bg-white max-w-[71rem] w-full rounded mt-16">
         <div className="flex items-center justify-between px-4 py-2">
           <h2 className="font-semibold ">Update Sub Category</h2>
           <button type="button">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/blinkit_logo_2.0.png";
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -34,17 +34,23 @@ const Header = () => {
   const isSearchPage = location.pathname === "/search";
 
   return (
-    <header className="container pt-2 lg:pt-0 px-5 mx-auto h-[7rem] lg:h-[5.5rem] sticky top-0 lg:shadow-lg bg-white">
+    <header className="container pt-2 lg:pt-0 px-5 mx-auto h-[7rem] lg:h-[5.5rem] sticky top-0  bg-white z-30">
       <div className="container mx-auto ">
-        <div className="flex items-center lg:p-5 justify-between  ">
+        <div className="flex items-center justify-between  ">
           {/* logo section */}
           <Link
             to={"/"}
-            className={`flex justify-center flex-col px-2 ${
+            className={`lg:flex justify-center flex-col  ${
               isMobile && isSearchPage && "hidden"
             }`}
           >
-            <img src={logo} height={60} width={170} alt="logo" />
+            <div className="h-8 md:h-10 lg:h-[4rem] -ml-2 p-.5">
+              <img
+                src={logo}
+                alt="logo"
+                className="h-full w-full object-scale-down"
+              />
+            </div>
           </Link>
 
           {/* search section  */}

@@ -17,12 +17,12 @@ const TableDisplay = ({ column, data }) => {
   return (
     <div className="">
       <table className="w-full ">
-        <thead className="bg-black text-white sticky top-[8.5rem]">
+        <thead className="bg-black text-white  ">
           {table.getHeaderGroups()?.map((headerGroup) => (
             <tr key={headerGroup.id} className="h-10">
               <th>Sr. No.</th>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="border">
+                <th key={header.id} className="border whitespace-nowrap">
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -39,7 +39,7 @@ const TableDisplay = ({ column, data }) => {
             <tr key={row.id} className="">
               <td
                 key={row.id + "sr"}
-                className="px-4 border border-neutral-400"
+                className="px-4 border border-neutral-400 whitespace-nowrap"
               >
                 {row.index + 1}
               </td>

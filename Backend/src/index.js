@@ -9,6 +9,7 @@ import userRouter from "./routes/user.route.js";
 import categoryRouter from "./routes/category.route.js";
 import imageRouter from "./routes/image.route.js";
 import subCategoryRouter from "./routes/subCategory.route.js";
+import productRouter from "./routes/product.route.js";
 dotenv.config();
 
 const app = express();
@@ -37,6 +38,8 @@ app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/file', imageRouter)
 app.use('/api/subcategory', subCategoryRouter)
+app.use('/api/product', productRouter)
+
 app.use((req, res) => {
     res.send('Something went wrong');
 })
@@ -46,7 +49,7 @@ app.use((req, res) => {
 
 
 
-const PORT = 8080 || process.env.PORT;
+const PORT = process.env.PORT || 2038
 
 connectDB().then(() => {
 

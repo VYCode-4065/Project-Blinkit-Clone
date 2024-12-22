@@ -6,7 +6,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import toast from "react-hot-toast";
 import ConfirmBox from "./ConfirmBox";
 
-const CardDisplay = ({ Categorydata }) => {
+const CardDisplay = ({ Categorydata, refresh }) => {
   const [openUpdate, setOpenUpdate] = useState(false);
 
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
@@ -19,7 +19,6 @@ const CardDisplay = ({ Categorydata }) => {
         ...SummaryApi.deleteCategory,
         data: { _id },
       });
-      console.log(response.data);
 
       if (response.data.status) {
         toast.success(response?.data?.message);
@@ -28,6 +27,7 @@ const CardDisplay = ({ Categorydata }) => {
       AxiosToastError(error);
     } finally {
       setOpenConfirmDelete(false);
+      refresh();
     }
   };
 

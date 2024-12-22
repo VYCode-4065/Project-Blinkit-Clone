@@ -113,7 +113,7 @@ const UploadProductSubCategory = ({ close }) => {
               value={subCategoryData.name}
               onChange={handleOnChange}
               placeholder="Enter sub-category name "
-              className="outline-2 outline-blue-400 p-2 rounded"
+              className="outline-2 outline-blue-400 p-2 rounded "
             />
           </div>
           <div className="grid lg:grid-cols-4">
@@ -122,7 +122,7 @@ const UploadProductSubCategory = ({ close }) => {
                 <img
                   src={subCategoryData.image}
                   alt="subcategory"
-                  className="w-40 mx-auto py-2 lg:w-full h-full  object-scale-down"
+                  className="mx-auto py-2 lg:w-full h-48  object-center"
                 />
               ) : (
                 <p className="text-blue-500 font-semibold my-auto">No image</p>

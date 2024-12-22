@@ -41,6 +41,8 @@ const SubCategory = () => {
       dispatch(setSubCategory(responseData.data));
     } catch (error) {
       AxiosToastError(error);
+    } finally {
+      setSubCategoryLoading(true);
     }
   };
 
@@ -157,15 +159,18 @@ const SubCategory = () => {
         {addSubCategory && (
           <UploadProductSubCategory close={() => setAddSubCategory(false)} />
         )}
-        {subCategoryLoading && <LoadingSpinner />}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 rounded overflow-hidden ">
-          {/* <SubCategoryCard SubCategoryData={subCategoryData} /> */}
-        </div>
+        {!subCategoryLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="w-full max-w-[90vw] overflow-auto">
+            <TableDisplay data={subCategoryData} column={column} />
+          </div>
+        )}
 
-        {!subCategoryData[0] && !subCategoryLoading && <NoData />}
+        {/* {!subCategoryData[0] && !subCategoryLoading && <NoData />} */}
       </div>
-      <TableDisplay data={subCategoryData} column={column} />
+
       {viewItem && <ViewItem url={viewItem} close={() => setViewItem("")} />}
       {openConfirmDelete && (
         <ConfirmBox

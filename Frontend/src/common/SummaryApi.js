@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:8080"
+export const baseURL = "http://localhost:3030"
 
 const SummaryApi = {
     register: {
@@ -86,23 +86,23 @@ const SummaryApi = {
         method: 'post'
     },
     getProductByCategory: {
-        url: '/api/product/get-product-by-category',
+        url: '/api/product/get-by-category',
         method: 'post'
     },
     getProductByCategoryAndSubCategory: {
-        url: '/api/product/get-pruduct-by-category-and-subcategory',
+        url: '/api/product/get-by-cat-subcat',
         method: 'post'
     },
     getProductDetails: {
-        url: '/api/product/get-product-details',
+        url: '/api/product/get-by-id',
         method: 'post'
     },
     updateProductDetails: {
-        url: "/api/product/update-product-details",
+        url: "/api/product/update",
         method: 'put'
     },
     deleteProduct: {
-        url: "/api/product/delete-product",
+        url: "/api/product/delete",
         method: 'delete'
     },
     searchProduct: {

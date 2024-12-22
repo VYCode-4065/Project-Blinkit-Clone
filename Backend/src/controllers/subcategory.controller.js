@@ -43,6 +43,28 @@ const getSubCategoryController = asynchandler(async (req, res) => {
         .json(new ApiResponse(200, allSubCategory, 'All sub categories fetched successfully '))
 })
 
+const getSubCategoryByCategoryController = asynchandler(async (req, res) => {
+    const { categoryId } = req.body;
+
+    if (!categoryId) {
+        return res.status(400)
+            .json(new ApiResponse(400, {}, 'Provide category id '))
+    }
+
+    const subCat = await subCategory.find({
+        category: {
+            $in: categoryId
+        }
+    })
+
+    if (!subCat) {
+        return res.status(500)
+            .json(new ApiResponse(500, {}, 'Unable to fetch sub category '))
+    }
+    return res.status(200)
+        .json(new ApiResponse(400, subCat, 'Sub category fetched successfully !'))
+})
+
 const updateSubCategoryController = asynchandler(async (req, res) => {
     const { _id, name, image, category } = req.body;
 
@@ -106,6 +128,7 @@ export {
     addSubCategoryController,
     getSubCategoryController,
     updateSubCategoryController,
-    deleteSubCategoryController
+    deleteSubCategoryController,
+    getSubCategoryByCategoryController
 
 }
