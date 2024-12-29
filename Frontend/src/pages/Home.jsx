@@ -8,6 +8,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import Axios from "../utils/Axios.js";
 import SummaryApi from "../common/SummaryApi.js";
 import CategoryDisplayPage from "./CategoryDisplayPage.jsx";
+import DisplayCartMobile from "./DisplayCartMobile.jsx";
 
 const Home = () => {
   const loadingProduct = useSelector(
@@ -37,14 +38,16 @@ const Home = () => {
   };
 
   return (
-    <section className="bg-white lg:mx-32">
+    <section className="bg-white lg:mx-32 relative">
       <div className="container rounded bg-transparent">
         <img src={banner} alt="" className="hidden lg:block " />
         <img src={bannerMobile} alt="" className="lg:hidden" />
       </div>
 
       <div
-        className={`grid grid-cols-2 md:grid-cols-4 md:mx-10 lg:grid-cols-10 gap-2 mx-2 lg:mx-3 my-3 ${
+        className={`grid grid-cols-2 md:grid-cols-4 md:mx-10 ${
+          loadingProduct ? "lg:grid-cols-7" : "lg:grid-cols-10"
+        } gap-2 mx-2 lg:mx-3 my-3 ${
           loadingProduct && "animate-pulse"
         } rounded `}
       >
@@ -92,6 +95,7 @@ const Home = () => {
                 key={val._id + "categoryDisplay"}
                 id={val?._id}
                 name={val?.name}
+                gotoUrl={() => handleProductListPage(val)}
               />
             );
           }

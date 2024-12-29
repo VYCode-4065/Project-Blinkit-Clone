@@ -5,7 +5,8 @@ const initialValue = {
     allCategory: [],
     allSubCategory: [],
     product: [],
-    loadingProduct: false
+    loadingProduct: false,
+    productTotalPrice: 0
 
 }
 
@@ -28,9 +29,12 @@ const productCategorySlice = createSlice({
         },
         setLoadingProduct: (state, action) => {
             state.loadingProduct = action.payload;
+        },
+        setProductTotalPrice: (state, action) => {
+            state.productTotalPrice = action.payload
         }
     }
 })
 
-export const { setCategory, setSubCategory, setProduct, setLoadingProduct } = productCategorySlice.actions;
+export const { setCategory, setSubCategory, setProduct, setLoadingProduct, setProductTotalPrice } = productCategorySlice.actions;
 export default productCategorySlice.reducer;

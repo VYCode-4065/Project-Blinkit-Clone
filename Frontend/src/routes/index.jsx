@@ -19,6 +19,10 @@ import Product from "../pages/Product";
 import AdminControl from "../components/AdminControl";
 import ProductListPage from "../pages/ProductListPage";
 import ProductInfoDisplay from "../pages/ProductInfoDisplay";
+import CategoryProductDisplay from "../pages/CategoryProductDisplay";
+import CheckoutPage from "../pages/CheckoutPage";
+import SuccessfulOrder from "../pages/SuccessfulOrder";
+import CancelOrder from "../pages/CancelOrder";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +111,15 @@ const router = createBrowserRouter([
           },
         ],
       },
+      // {
+      //   path: "/dc",
+      //   children: [
+      //     {
+      //       path: "/id",
+      //       element: <CategoryProductDisplay />,
+      //     },
+      //   ],
+      // },
       {
         path: ":category",
         children: [
@@ -124,6 +137,18 @@ const router = createBrowserRouter([
             element: <ProductInfoDisplay />,
           },
         ],
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/success",
+        element: <SuccessfulOrder />,
+      },
+      {
+        path: "/cancel",
+        element: <CancelOrder />,
       },
     ],
   },

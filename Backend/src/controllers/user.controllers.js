@@ -54,7 +54,7 @@ const LoginUser = asynchandler(async (req, res) => {
         return res.status(401).json(new ApiError(400, {}, "Email and password are required !"))
     }
 
-    const existedUser = await User.findOne({ email })
+    const existedUser = await User.findOne({ email: email })
 
     if (!existedUser) {
         return res.status(401).json((401, {}, "You don't have account !"))

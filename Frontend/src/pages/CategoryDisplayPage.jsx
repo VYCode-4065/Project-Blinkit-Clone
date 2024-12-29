@@ -6,18 +6,18 @@ import SummaryApi from "../common/SummaryApi";
 import AxiosToastError from "../utils/AxiosToastError";
 import DisplayProduct from "./DisplayProduct";
 
-const CategoryDisplayPage = ({ id, name }) => {
+const CategoryDisplayPage = ({ id, name, gotoUrl }) => {
   const [Productdata, setProductData] = useState([]);
+  const [page, setPage] = useState(1);
 
   const fetchProductByCategory = async () => {
     try {
       const response = await Axios({
         ...SummaryApi.getProductByCategory,
-        data: { id: id },
+        data: { id: id, page: page },
       });
 
       const { data: responseData } = response;
-      // console.log({ name }, responseData?.data);
 
       if (responseData.success) {
         setProductData(responseData.data);
@@ -30,13 +30,15 @@ const CategoryDisplayPage = ({ id, name }) => {
   useEffect(() => {
     fetchProductByCategory();
   }, []);
+
+  const url = `/dc/q?=${id}`;
   return (
     <div>
       <div className="flex items-center justify-between ">
         <p className="font-bold text-lg lg:text-xl">{name}</p>
-        <Link to={"/category"} className="pr-2 text-green-800 lg:text-lg">
+        <button onClick={gotoUrl} className="pr-2 text-green-800 lg:text-lg">
           See all
-        </Link>
+        </button>
       </div>
 
       <div className="relative flex items-center">

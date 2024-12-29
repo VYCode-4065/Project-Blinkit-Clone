@@ -22,7 +22,7 @@ const UserMenu = ({ setProfile }) => {
     dispatch(resetUser());
     localStorage.clear();
     navigate("/");
-    setProfile(false);
+    setProfile;
     fetchUserDetails();
   };
   return (

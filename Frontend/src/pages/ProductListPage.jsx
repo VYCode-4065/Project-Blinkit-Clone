@@ -7,6 +7,7 @@ import { generatePageURL } from "../components/GeneratePageUrl";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useSelector } from "react-redux";
 import userMobile from "../hooks/useMobile";
+import AddToCartButton from "./AddToCartButton";
 
 const ProductListPage = () => {
   const [productData, setProductData] = useState([]);
@@ -66,6 +67,11 @@ const ProductListPage = () => {
       setLoading(false);
       fetchSubCat();
     }
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropogation();
   };
   useEffect(() => {
     fetchProduct();
@@ -136,7 +142,7 @@ const ProductListPage = () => {
       </div>
       <div className="   h-[83vh] container mx-auto grid grid-cols-[100px,1fr] md:grid-cols-[200px,1fr] lg:grid-cols-[250px,1fr] ">
         <div className=" h-[82vh] border-r-1 border-y-slate-100">
-          <div className="flex items-center gap-10 lg:gap-5 flex-col overflow-y-scroll no-scrollbar h-[80vh]  w-full px-2 lg:px-0">
+          <div className="flex items-center gap-10 lg:gap-2 flex-col overflow-y-scroll no-scrollbar h-[80vh]  w-full px-2 lg:px-0">
             {s.map((val, idx) => {
               const url = `/${generatePageURL(
                 params.category
@@ -145,7 +151,9 @@ const ProductListPage = () => {
                 <Link
                   to={url}
                   key={idx + val._id}
-                  className="grid place-items-center lg:place-content-between lg:grid-flow-col-dense lg:w-full cursor-pointer  border border-slate-100 lg:px-7 container"
+                  className={`grid place-items-center lg:place-content-between lg:grid-flow-col-dense lg:w-full cursor-pointer  border border-neutral-300 lg:px-7 container  rounded ${
+                    subCategoryId === val?._id ? "bg-blue-200" : "bg-white"
+                  }`}
                 >
                   <div className="flex items-center justify-center flex-col lg:flex-row lg:justify-between lg:gap-2 lg:w-auto gap-2">
                     <img
@@ -160,8 +168,8 @@ const ProductListPage = () => {
             })}
           </div>
         </div>
-        <div className=" ">
-          <div className="sticky top-0 h-10 p-3 bg-white shadow-sm shadow-pink-200 font-bold">
+        <div className="">
+          <div className="h-10 w-full p-3 bg-white shadow-sm shadow-pink-200 font-bold">
             <h3>{subCategoryName}</h3>
           </div>
           <div className="h-[74vh] md:h-[73vh] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 shadow px-10 md:px-5 lg:px-20 mt-4 overflow-y-scroll no-scrollbar lg:gap-2">
@@ -172,7 +180,7 @@ const ProductListPage = () => {
                 <Link
                   to={url}
                   key={idx + val._id}
-                  className="lg:h-80 w-52  shadow rounded bg-white p-2 flex justify-between flex-col  gap-3 "
+                  className=" w-52 h-52 shadow rounded bg-white p-2 flex justify-between flex-col  gap-3 md:mb-5 lg:mb-0"
                 >
                   <img
                     src={val.image[0]}
@@ -187,9 +195,9 @@ const ProductListPage = () => {
                   </div>
                   <div className="flex justify-between ">
                     <p className="text-sm font-medium">₹{val.price}</p>
-                    <button className="border text-sm md:text-nowrap text-green-500 border-green-500 rounded px-3 py-1 ">
-                      ADD
-                    </button>
+                    <div onClick={handleAddToCart} className="">
+                      <AddToCartButton data={val} />
+                    </div>
                   </div>
                 </Link>
               );

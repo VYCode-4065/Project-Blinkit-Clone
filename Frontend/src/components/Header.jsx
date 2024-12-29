@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/blinkit_logo_2.0.png";
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,20 +7,52 @@ import userMobile from "../hooks/useMobile";
 import { BsCart4 } from "react-icons/bs";
 import { Toaster } from "react-hot-toast";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserProfile from "./UserProfile";
 import UserProfileMobile from "./UserProfileMobile";
+import { DislayPriceInRupees } from "../utils/DisplayPriceInRupee";
+import { pricewithdiscount } from "./pricewithdiscount";
+import DisplayCartMobile from "../pages/DisplayCartMobile";
+import DisplayCartItem from "../pages/DisplayCartItem";
+import { setProductTotalPrice } from "../store/productCategory";
 
 const Header = () => {
   const user = useSelector((state) => state.userDetails);
+  const cartItem = useSelector((state) => state.cartProductDetails.cart);
+  const [openCart, setOpenCart] = useState(false);
 
   const [isMobile] = userMobile();
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
   const navigate = useNavigate();
 
   const [openProfile, setOpenProfile] = useState(false);
+
+  const [totalQty, setTotalQty] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const qty = cartItem.reduce((prev, curr) => {
+      return prev + curr.quantity;
+    }, 0);
+
+    setTotalQty(qty);
+
+    const tPrice = cartItem.reduce((prev, curr) => {
+      return (
+        prev +
+        Number(
+          pricewithdiscount(curr?.productId?.price, curr?.productId?.discount)
+        ) *
+          Number(curr.quantity)
+      );
+    }, 0);
+
+    setTotalPrice(tPrice);
+    dispatch(setProductTotalPrice(tPrice));
+  }, [cartItem]);
 
   const handleUserClick = () => {
     setOpenProfile((prev) => !prev);
@@ -103,13 +135,25 @@ const Header = () => {
                 </button>
               )}
             </div>
-            <button className="flex items-center bg-green-800 py-3 px-4 rounded-md text-white gap-2 hover:bg-green-700">
+            <button
+              onClick={() => setOpenCart(true)}
+              className="flex items-center bg-green-800  px-4 rounded-md text-white gap-2 hover:bg-green-700"
+            >
               <div className="animate-bounce">
                 <BsCart4 size={29} />
               </div>
-              <div className="font-semibold">
-                <span>My cart</span>
-              </div>
+              {cartItem[0] ? (
+                <div className="text-sm ">
+                  <p>{totalQty} items</p>
+                  <p>{DislayPriceInRupees(totalPrice)}</p>
+                </div>
+              ) : (
+                <>
+                  <div className="font-semibold py-3">
+                    <span>My cart</span>
+                  </div>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -117,6 +161,23 @@ const Header = () => {
       <div className="mx-auto container bg-transparent pt-2 px-4 lg:hidden">
         <Search />
       </div>
+      {cartItem[0] && location.pathname !== "/checkout" && (
+        <div className="fixed bottom-5 left-1 right-1">
+          <DisplayCartMobile
+            totalQty={totalQty}
+            totalPrice={totalPrice}
+            displayCart={() => setOpenCart(true)}
+          />
+        </div>
+      )}
+      {openCart && (
+        <DisplayCartItem
+          totalQty={totalQty}
+          totalPrice={totalPrice}
+          data={cartItem}
+          close={() => setOpenCart(false)}
+        />
+      )}
     </header>
   );
 };

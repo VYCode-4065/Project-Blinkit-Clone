@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 import { IoMdArrowBack } from "react-icons/io";
 import userMobile from "../hooks/useMobile";
+import { generatePageURL } from "./GeneratePageUrl";
 
 const Search = () => {
   const [isSearchPage, setIsSearchPage] = useState(false);
@@ -22,29 +23,35 @@ const Search = () => {
     navigation("/search");
   };
 
-  const fetchProduct = async () => {
-    try {
-      const response = await Axios({
-        ...SummaryApi.getProduct,
-        data: { limit: 14, page: currentPage, search: search },
-      });
+  // const fetchProduct = async () => {
+  //   try {
+  //     const response = await Axios({
+  //       ...SummaryApi.getProduct,
+  //       data: { limit: 14, page: currentPage, search: search },
+  //     });
 
-      const { data: responseData } = response.data;
+  //     const { data: responseData } = response.data;
 
-      dispatch(setProduct(responseData.data));
-      setTotalPage(responseData.totalPage);
-      setProductData(responseData.data);
-    } catch (error) {
-      AxiosToastError(error);
-    }
-  };
+  //     dispatch(setProduct(responseData.data));
+  //     setTotalPage(responseData.totalPage);
+  //     setProductData(responseData.data);
+  //   } catch (error) {
+  //     AxiosToastError(error);
+  //   }
+  // };
 
-  const handleOnSearch = (e) => {
+  // const handleOnSearch = (e) => {
+  //   const { value } = e.target;
+
+  //   const timeoutval = setTimeout(() => {
+  //     setSearch(value);
+  //   }, 500);
+  // };
+
+  const handleOnChange = (e) => {
     const { value } = e.target;
-
-    const timeoutval = setTimeout(() => {
-      setSearch(value);
-    }, 500);
+    const url = `/search?q=${generatePageURL(value)}`;
+    navigation(url);
   };
   return (
     <>
@@ -89,7 +96,7 @@ const Search = () => {
             <input
               type="text"
               placeholder="Search for atta dal and more "
-              onChange={handleOnSearch}
+              onChange={handleOnChange}
               className="bg-transparent h-full outline-none w-full text-slate-600 pt-1"
             />
           )}

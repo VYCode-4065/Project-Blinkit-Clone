@@ -10,14 +10,28 @@ import categoryRouter from "./routes/category.route.js";
 import imageRouter from "./routes/image.route.js";
 import subCategoryRouter from "./routes/subCategory.route.js";
 import productRouter from "./routes/product.route.js";
+import cartRouter from "./routes/cart.route.js";
+import addressRouter from "./routes/address.route.js";
+import orderRouter from "./routes/order.route.js";
 dotenv.config();
 
 const app = express();
 
 app.use(cors({
-    credentials: true,
     origin: process.env.FRONTEND_URL,
+    credentials: true
 }))
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // Explicit origin
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true"); // Allow credentials
+    next();
+});
+
+
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(morgan())
@@ -39,7 +53,9 @@ app.use('/api/category', categoryRouter);
 app.use('/api/file', imageRouter)
 app.use('/api/subcategory', subCategoryRouter)
 app.use('/api/product', productRouter)
-
+app.use('/api/cart', cartRouter)
+app.use('/api/address', addressRouter)
+app.use('/api/order', orderRouter)
 app.use((req, res) => {
     res.send('Something went wrong');
 })

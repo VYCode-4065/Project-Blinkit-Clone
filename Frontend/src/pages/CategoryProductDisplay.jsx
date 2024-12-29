@@ -1,9 +1,9 @@
 import React from "react";
 
-const CategoryProductDisplay = ({ product }) => {
+const CategoryProductDisplay = () => {
   return (
     <section>
-      <div></div>
+      <div>product</div>
     </section>
   );
 };

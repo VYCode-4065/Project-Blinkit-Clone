@@ -3,12 +3,19 @@ import { ApiError } from "../utils/ApiErrors.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-export const AuthenticatedUser = async (req, _, next) => {
+export const AuthenticatedUser = async (req, res, next) => {
     try {
         const token = req.cookies?.Access_Token || req.header("Authorization")?.replace("Bearer ", "");
 
         if (!token) {
-            return res.status(401).json(new ApiResponse(401, {}, "Unauthorized request"))
+            return res.status(401).json({
+
+                message: "Please login !",
+                error: true,
+                success: false
+            }
+
+            )
         }
 
         const decodeToken = jwt.verify(token, process.env.ACCESS_TOKEN);
@@ -24,6 +31,8 @@ export const AuthenticatedUser = async (req, _, next) => {
         req.user = user;
         next();
     } catch (error) {
-        next(new ApiResponse(401, {}, error || "Invalid access token"))
+
+        return res.status(400).json(new ApiResponse(400, {}, "Please login first "))
+
     }
 };

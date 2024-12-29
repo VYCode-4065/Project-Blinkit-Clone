@@ -44,7 +44,6 @@ const Profile = () => {
         toast.success(response.data.message);
 
         const userUpdatedDetails = await fetchUserDetails();
-        console.log(userUpdatedDetails.data);
         dispatch(updateUserDetail(userData));
       }
     } catch (error) {

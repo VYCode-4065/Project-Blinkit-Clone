@@ -85,7 +85,7 @@ const getProductByCategoryController = asynchandler(async (req, res) => {
         category_id: {
             $in: id
         }
-    });
+    })
 
     if (!productByCategory) {
         return res.status(500)
@@ -220,6 +220,8 @@ const deleteProductController = asynchandler(async (req, res) => {
         .json(new ApiResponse(200, deletedProduct, "Product deleted successfully "))
 
 })
+
+
 export {
     AddProductController,
     getProductControler,

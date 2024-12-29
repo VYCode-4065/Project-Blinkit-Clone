@@ -26,6 +26,10 @@ const addressSchema = new Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    userId: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
     }
 }, { timestamps: true })
 

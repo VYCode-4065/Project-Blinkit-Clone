@@ -6,4 +6,9 @@ const AxiosToastError = (error) => {
     )
 }
 
+const AxiosToastError2 = (error) => {
+    toast.error(
+        error?.response
+    )
+}
 export default AxiosToastError

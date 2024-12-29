@@ -15,6 +15,9 @@ import {
   setProduct,
   setSubCategory,
 } from "./store/productCategory";
+import { addProductToCart } from "./store/cartSlice";
+import GlobalProvider from "./provider/GlobalProvider";
+import DisplayCartMobile from "./pages/DisplayCartMobile";
 
 function App() {
   const userData = useSelector((state) => state.userDetails);
@@ -73,6 +76,7 @@ function App() {
       AxiosToastError(error);
     }
   };
+
   useEffect(() => {
     fetchingData();
     fetchCategory();
@@ -80,13 +84,13 @@ function App() {
     fetchProduct();
   }, []);
   return (
-    <div className="bg-white">
+    <GlobalProvider className="bg-white">
       <Header />
       <main className="min-h-[62vh]">
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </GlobalProvider>
   );
 }
 

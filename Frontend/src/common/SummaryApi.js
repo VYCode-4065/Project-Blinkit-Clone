@@ -122,7 +122,7 @@ const SummaryApi = {
         method: 'put'
     },
     deleteCartItem: {
-        url: '/api/cart/delete-cart-item',
+        url: '/api/cart/delete',
         method: 'delete'
     },
     createAddress: {
@@ -137,8 +137,8 @@ const SummaryApi = {
         url: '/api/address/update',
         method: 'put'
     },
-    disableAddress: {
-        url: '/api/address/disable',
+    deleteAddress: {
+        url: '/api/address/delete',
         method: 'delete'
     },
     CashOnDeliveryOrder: {
@@ -146,7 +146,7 @@ const SummaryApi = {
         method: 'post'
     },
     payment_url: {
-        url: "/api/order/checkout",
+        url: "/api/order/online-payment",
         method: 'post'
     },
     getOrderItems: {

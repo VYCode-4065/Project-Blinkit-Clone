@@ -26,9 +26,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container px-5 min-h-[calc(100vh-140px)]">
+    <div className="container px-5 min-h-[calc(100vh-140px)] bg-white">
       <div className=" mb-14 lg:mb-0  grid lg:grid-cols-[220px,1fr] gap-2 rounded-sm ">
-        <div className="hidden lg:block  pb-4 w-full sticky top-28 max-h-[calc(100vh-200px)] ">
+        <div className="hidden lg:block  pb-4 w-full sticky top-28 h-[calc(100vh-130px)] border-r-2">
           <div className="flex items-start pl-4 pt-5 justify-center gap-2 flex-col  ">
             <h3 className="font-bold">My Account </h3>
 
