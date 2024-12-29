@@ -4,7 +4,6 @@ import { cartProduct } from '../models/cartProduct.model.js'
 import { asynchandler } from '../utils/asynchandler.js'
 import { ApiResponse } from '../utils/ApiResponse.js'
 import mongoose from 'mongoose'
-import Stripe from '../utils/Stripe.js'
 
 const CashOnDeliveryOrderController = asynchandler(async (req, res) => {
 
