@@ -23,31 +23,6 @@ const Search = () => {
     navigation("/search");
   };
 
-  // const fetchProduct = async () => {
-  //   try {
-  //     const response = await Axios({
-  //       ...SummaryApi.getProduct,
-  //       data: { limit: 14, page: currentPage, search: search },
-  //     });
-
-  //     const { data: responseData } = response.data;
-
-  //     dispatch(setProduct(responseData.data));
-  //     setTotalPage(responseData.totalPage);
-  //     setProductData(responseData.data);
-  //   } catch (error) {
-  //     AxiosToastError(error);
-  //   }
-  // };
-
-  // const handleOnSearch = (e) => {
-  //   const { value } = e.target;
-
-  //   const timeoutval = setTimeout(() => {
-  //     setSearch(value);
-  //   }, 500);
-  // };
-
   const handleOnChange = (e) => {
     const { value } = e.target;
     const url = `/search?q=${generatePageURL(value)}`;

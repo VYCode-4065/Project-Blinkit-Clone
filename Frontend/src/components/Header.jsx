@@ -66,7 +66,7 @@ const Header = () => {
   const isSearchPage = location.pathname === "/search";
 
   return (
-    <header className="container pt-2 lg:pt-0 px-5 mx-auto h-[7rem] lg:h-[5.5rem] sticky top-0  bg-white z-30">
+    <header className="container pt-5 lg:pt-0 px-5 mx-auto h-[7.3rem] md:h-[5.5rem] lg:h-[4.8rem] sticky top-0  bg-white z-30">
       <div className="container mx-auto ">
         <div className="flex items-center justify-between  ">
           {/* logo section */}
@@ -76,9 +76,9 @@ const Header = () => {
               isMobile && isSearchPage && "hidden"
             }`}
           >
-            <div className="h-8 md:h-10 lg:h-[4rem] -ml-2 p-.5">
+            <div className="h-8 md:h-10 lg:h-[3.3rem] -ml-2 p-.5">
               <img
-                src={logo}
+                src="https://prooh.ai/images/blinkit.png"
                 alt="logo"
                 className="h-full w-full object-scale-down"
               />
@@ -86,7 +86,7 @@ const Header = () => {
           </Link>
 
           {/* search section  */}
-          <div className="cursor-text hidden lg:block">
+          <div className="cursor-text hidden lg:block mt-3">
             <Search />
           </div>
 

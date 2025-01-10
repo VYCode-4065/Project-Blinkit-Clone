@@ -60,6 +60,33 @@ const CheckoutPage = () => {
     }
   };
 
+  const handleOnlinePayment = async () => {
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_KEY);
+
+    try {
+      toast.loading("Redirecting to payment gateway");
+      const response = await Axios({
+        ...SummaryApi.payment_url,
+        data: {
+          list_items: cartProductList,
+          totalAmt: totalPrice,
+          addressId: addressList[selectedAddress]._id,
+          subTotalAmt: totalPrice,
+        },
+      });
+
+      const { data: responseData } = response;
+
+      stripe.redirectToCheckout({ sessionId: responseData.id });
+
+      if (fetchCartProduct) {
+        fetchCartProduct();
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
+
   useEffect(() => {
     fetchUserAddress();
   }, [openAddAddress]);
@@ -149,7 +176,10 @@ const CheckoutPage = () => {
           </div>
         </div>
         <div className="flex items-center flex-col gap-3 w-full px-3">
-          <button className="bg-orange-400 py-2 rounded font-semibold text-white border-2 border-orange-200 shadow-md w-full">
+          <button
+            className="bg-orange-400 py-2 rounded font-semibold text-white border-2 border-orange-200 shadow-md w-full"
+            onClick={handleOnlinePayment}
+          >
             Online Payment{" "}
           </button>
           <button

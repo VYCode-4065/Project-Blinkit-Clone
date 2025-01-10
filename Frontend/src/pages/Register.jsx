@@ -67,7 +67,7 @@ const Register = () => {
     <section className="w-full container mx-auto px-2 ">
       <div className="bg-white my-4 w-full max-w-lg mx-auto rounded p-7 border-2 shadow-lg shadow-blue-500 border-pink-600">
         <p className="text-center font-bold text-xl text-blue-500">
-          Welcome to <span className="text-yellow-500">Binkey</span>
+          Welcome to <span className="text-black">blink</span>
           <span className="text-green-600">it</span>
         </p>
 
