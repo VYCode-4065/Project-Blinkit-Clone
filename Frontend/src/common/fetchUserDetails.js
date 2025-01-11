@@ -1,6 +1,6 @@
 import Axios from "../utils/Axios";
 import AxiosToastError from "../utils/AxiosToastError";
-import SummaryApi, { baseURL } from "./SummaryApi";
+import SummaryApi, { baseURL } from "./SummaryApi.js";
 
 const fetchUserDetails = async () => {
     try {
