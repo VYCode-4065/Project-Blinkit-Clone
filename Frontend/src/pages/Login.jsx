@@ -78,7 +78,7 @@ const Login = () => {
             Login
           </span>
         </div>
-        <Form className="grid gap-4 mt-6" onSubmit={handleSubmit}>
+        <form className="grid gap-4 mt-6" onSubmit={handleSubmit}>
           <div className="grid gap-1">
             <label htmlFor="email">Email :</label>
             <input
@@ -114,13 +114,14 @@ const Login = () => {
 
           <button
             disabled={!valideValue}
+            type="submit"
             className={` ${
               valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500"
             }    text-white py-2 rounded font-semibold my-3 tracking-wide`}
           >
             Login
           </button>
-        </Form>
+        </form>
         <div className="pb-4 mb-4 flex item-end">
           <Link
             to={"/forgot-password"}
