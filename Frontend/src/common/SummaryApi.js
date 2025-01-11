@@ -14,7 +14,7 @@ const SummaryApi = {
         method: 'put'
     },
     forgot_password_otp_verification: {
-        url: 'api/user/verify-otp',
+        url: '/api/user/verify-otp',
         method: 'post'
     },
     resetPassword: {
@@ -22,11 +22,11 @@ const SummaryApi = {
         method: 'post'
     },
     refreshToken: {
-        url: 'api/user/refresh-token',
+        url: '/api/user/refresh-token',
         method: 'post'
     },
     userDetails: {
-        url: 'api/user/user-details',
+        url: '/api/user/user-details',
         method: "get"
     },
     logout: {
