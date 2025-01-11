@@ -5,7 +5,6 @@ import { asynchandler } from '../utils/asynchandler.js'
 import { ApiResponse } from '../utils/ApiResponse.js'
 import mongoose from 'mongoose'
 import StripeValue from '../utils/Stripe.js'
-import Stripe from 'stripe'
 
 
 const CashOnDeliveryOrderController = asynchandler(async (req, res) => {
