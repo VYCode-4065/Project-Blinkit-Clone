@@ -50,8 +50,11 @@ const Login = () => {
       if (response.data.success) {
         toast.success(response.data.message);
         try {
-          const userDetails = await fetchUserDetails();
-          dispatch(setUser(userDetails?.data));
+          const userresponse = await Axios({
+            ...SummaryApi.userDetails,
+          });
+
+          dispatch(setUser(userresponse.data));
         } catch (error) {
           console.log(error.message || error);
         }
