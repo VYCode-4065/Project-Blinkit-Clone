@@ -23,8 +23,6 @@ function App() {
   const userData = useSelector((state) => state.userDetails);
   const allCategory = useSelector((state) => state.categoryDetails.allCategory);
 
-  // console.log("loadingProduct", loadingProduct);
-
   const dispatch = useDispatch();
 
   const fetchingData = async () => {

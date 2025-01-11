@@ -45,17 +45,17 @@ const MyOrders = () => {
           )
         } */}
 
-        <div className="mt-7">
+        {/* <div className="mt-7">
           <h1>Order Summary</h1>
           <div className="bg-blue-50  font-bold p-4 ">
             <img src={""} alt="" />
             <h2>{orderData[0].product_details.name} </h2>
           </div>
-        </div>
-
-        {/* <div className="p-3 mt-7 bg-blue-100  rounded border shadow shadow-yellow-200 font-semibold text-md ">
-          <h2>No orders was found !</h2>
         </div> */}
+
+        <div className="p-3 mt-7 bg-blue-100  rounded border shadow shadow-yellow-200 font-semibold text-md ">
+          <h2>No orders was found !</h2>
+        </div>
       </div>
     </section>
   );
