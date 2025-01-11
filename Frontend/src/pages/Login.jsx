@@ -54,7 +54,7 @@ const Login = () => {
             ...SummaryApi.userDetails,
           });
 
-          dispatch(setUser(userresponse.data));
+          dispatch(setUser(userresponse.data.data));
         } catch (error) {
           console.log(error.message || error);
         }
