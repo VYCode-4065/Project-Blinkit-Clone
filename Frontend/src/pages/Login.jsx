@@ -49,9 +49,13 @@ const Login = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
-        const userDetails = await fetchUserDetails();
+        try {
+          const userDetails = await fetchUserDetails();
+          dispatch(setUser(userDetails?.data));
+        } catch (error) {
+          console.log(error.message || error);
+        }
 
-        dispatch(setUser(userDetails?.data));
         localStorage.setItem(
           "Access_Token",
           response?.data?.data?.access_token
