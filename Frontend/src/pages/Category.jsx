@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Axios from "../utils/Axios";
 import SummaryApi from "../common/SummaryApi";
 import AxiosToastError from "../utils/AxiosToastError";
-import { setCategory } from "../store/productCategory";
 
 const Category = () => {
   const [addCategory, setAddCategory] = useState(false);

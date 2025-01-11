@@ -12,7 +12,7 @@ import Profile from "../pages/Profile";
 import MyOrders from "../pages/MyOrders";
 import SavedAddress from "../pages/SavedAddress";
 import UpdateAvatar from "../pages/UpdateAvatar";
-import Category from "../pages/category";
+import Category from "../pages/Category";
 import SubCategory from "../pages/SubCategory";
 import UploadProduct from "../pages/UploadProduct";
 import Product from "../pages/Product";
