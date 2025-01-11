@@ -114,7 +114,6 @@ const Login = () => {
 
           <button
             disabled={!valideValue}
-            type="submit"
             className={` ${
               valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500"
             }    text-white py-2 rounded font-semibold my-3 tracking-wide`}
