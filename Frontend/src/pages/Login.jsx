@@ -50,11 +50,11 @@ const Login = () => {
       if (response.data.success) {
         toast.success(response.data.message);
         try {
-          const userresponse = await fetchUserDetails();
+          // const userresponse = await fetchUserDetails();
 
-          console.log("this is on login page ", userresponse);
+          // console.log("this is on login page ", userresponse);
 
-          dispatch(setUser(userresponse?.data));
+          dispatch(setUser(response.data?.data?.existedUser));
         } catch (error) {
           console.log(error.message || error);
         }
