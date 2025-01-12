@@ -76,11 +76,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchingData();
-  }, [userData]);
-
-  useEffect(() => {
-    fetchingData();
+    // fetchingData();
     fetchCategory();
     fetchAllSubCategory();
     fetchProduct();
