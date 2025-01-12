@@ -112,7 +112,7 @@ const Header = () => {
           <Toaster />
           <div className="hidden lg:flex  lg:items-center lg:gap-9">
             <div>
-              {user ? (
+              {user._id ? (
                 <div className="relative">
                   <div
                     className="flex items-center gap-1 select-none cursor-pointer"
