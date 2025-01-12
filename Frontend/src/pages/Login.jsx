@@ -56,7 +56,7 @@ const Login = () => {
 
           console.log("this is on login page ", userresponse.data);
 
-          dispatch(setUser(userresponse.data));
+          dispatch(setUser(userresponse.data.data));
         } catch (error) {
           console.log(error.message || error);
         }
