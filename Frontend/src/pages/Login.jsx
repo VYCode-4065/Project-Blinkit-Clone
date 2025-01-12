@@ -54,7 +54,9 @@ const Login = () => {
             ...SummaryApi.userDetails,
           });
 
-          dispatch(setUser(userresponse.data.data));
+          console.log("this is on login page ", userresponse.data);
+
+          dispatch(setUser(userresponse.data));
         } catch (error) {
           console.log(error.message || error);
         }
