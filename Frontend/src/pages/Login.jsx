@@ -50,11 +50,11 @@ const Login = () => {
       if (response.data.success) {
         toast.success(response.data.message);
         try {
-          // const userresponse = await fetchUserDetails();
+          const userresponse = await fetchUserDetails();
 
           // console.log("this is on login page ", userresponse);
 
-          dispatch(setUser(response.data?.data?.existedUser));
+          dispatch(setUser(userresponse.data));
         } catch (error) {
           console.log(error.message || error);
         }
@@ -121,6 +121,7 @@ const Login = () => {
 
           <button
             disabled={!valideValue}
+            type="button"
             className={` ${
               valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500"
             }    text-white py-2 rounded font-semibold my-3 tracking-wide`}

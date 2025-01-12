@@ -7,7 +7,7 @@ export const AuthenticatedUser = async (req, res, next) => {
     try {
         // Extract token from cookies or Authorization header
         const token =
-            req.cookies?.Access_Token ||
+            req.cookies.Access_Token ||
             (req?.headers?.authorization?.startsWith("Bearer ") &&
                 req.headers.authorization.split(" ")[1]);
 
