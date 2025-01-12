@@ -77,6 +77,10 @@ function App() {
 
   useEffect(() => {
     fetchingData();
+  }, [userData]);
+
+  useEffect(() => {
+    fetchingData();
     fetchCategory();
     fetchAllSubCategory();
     fetchProduct();

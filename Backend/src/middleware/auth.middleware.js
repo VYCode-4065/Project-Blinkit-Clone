@@ -5,14 +5,13 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 export const AuthenticatedUser = async (req, res, next) => {
     try {
-        const token = req.cookies?.Access_Token || req.header("Authorization")?.replace("Bearer ", "");
+        const token = req.cookies?.Access_Token || req?.headers?.authorization?.split(" ")[1];
 
         if (!token) {
             return res.status(401).json({
 
-                message: "Please login !",
-                error: true,
-                success: false
+                message: "Provide token",
+
             }
 
             )
