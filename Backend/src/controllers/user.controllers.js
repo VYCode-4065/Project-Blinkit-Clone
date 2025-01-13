@@ -46,58 +46,57 @@ const UserRegister = asynchandler(async (req, res) => {
 })
 
 const LoginUser = asynchandler(async (req, res) => {
-
     const { email, password, avatar } = req.body;
 
-
     if (!email || !password) {
-        return res.status(401).json(new ApiError(400, {}, "Email and password are required !"))
+        return res.status(401).json(new ApiError(400, {}, "Email and password are required!"));
     }
 
-    const existedUser = await User.findOne({ email: email })
+    const existedUser = await User.findOne({ email });
 
     if (!existedUser) {
-        return res.status(401).json((401, {}, "You don't have account !"))
+        return res.status(401).json(new ApiError(401, {}, "You don't have an account!"));
     }
-    if (existedUser.status != "Active") {
-        throw new ApiError(402, 'Contact to Admin !')
+
+    if (existedUser.status !== "Active") {
+        throw new ApiError(402, "Contact to Admin!");
     }
 
     const correctPassword = await existedUser.isCorrectPassword(password);
 
     if (!correctPassword) {
-        return res.status(400).json(new ApiResponse(400, {}, "Incorrect password"))
+        return res.status(400).json(new ApiResponse(400, {}, "Incorrect password"));
     }
-
 
     const refresh_token = generateRefreshToken(existedUser._id, existedUser.name, email);
     const access_token = genereateAccessToken(existedUser._id, email);
-    existedUser.save();
 
+    // const hashedRefreshToken = await bcrypt.hash(refresh_token, 10);
     await User.updateOne({ _id: existedUser._id }, {
         $set: {
             refresh_token: refresh_token,
-            last_login_date: new Date().toString()
+            last_login_date: new Date().toString(),
         }
-    })
+    });
 
 
-
+    const isProduction = process.env.NODE_ENV === 'production';
     const cookieOptions = {
         httpOnly: true,
-        secure: true,
-        samesite: "None"
-    }
+        secure: isProduction,
+        sameSite: "None"
+    };
+
     res.cookie("Refresh_Token", refresh_token, cookieOptions);
     res.cookie("Access_Token", access_token, cookieOptions);
 
+    return res.json(new ApiResponse(200, {
+        existedUser,
+        access_token,
+        refresh_token,
+    }, "User logged in successfully"));
+});
 
-    return res.json(new ApiResponse(200,
-        {
-            existedUser, access_token, refresh_token
-        }, "User logged-in successfully"));
-
-})
 
 const LogoutUser = asynchandler(async (req, res) => {
 

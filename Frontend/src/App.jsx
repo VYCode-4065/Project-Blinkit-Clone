@@ -74,9 +74,10 @@ function App() {
       AxiosToastError(error);
     }
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchingData();
+    userData._id ? fetchingData() : navigate("/login");
     fetchCategory();
     fetchAllSubCategory();
     fetchProduct();
